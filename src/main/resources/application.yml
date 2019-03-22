@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    name: test
+    url: jdbc:sqlserver://*****:1433;databaseName=Epcloud
+    username: eeee
+    password: fafa
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      max-active: 20
+      initial-size: 5
+      max-wait: 10000
+      min-idle: 1
+      test-on-borrow: true
+      test-on-return: false
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filter:
+        stat:
+          db-type: sqlserver
+      validation-query: select 1
+
+#mybatis设置
+mybatis:
+  mapper-locations: mappers/*.xml
+  type-aliases-package: com.springboottest.test.models # 注意：对应实体类的路径
+#分页插件
+pagehelper:
+  reasonable: true
+  helper-dialect: sqlserver2012
+  support-methods-arguments: true
+  params: count=countSql
+  page-size-zero: true
